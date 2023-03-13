@@ -10,8 +10,9 @@ const PORT = process.env.PORT;
 const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
 
 app.set('view engine', 'hbs');
-
-hbs.registerPartials( __dirname + 'views\\partials' );
+const path = __dirname + 'views\\partials';
+console.log({path})
+hbs.registerPartials( path );
 app.use(express.static(__dirname+'public'));
 
 // Public static content
