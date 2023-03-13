@@ -6,11 +6,11 @@ dotenv.config()
 
 const app = express();
 const PORT = process.env.PORT;
-// const __filename = url.fileURLToPath(import.meta.url);
 const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
+const __filename = url.fileURLToPath('file://views/partials');
 
 app.set('view engine', 'hbs');
-const path = __dirname + 'views\\partials';
+const path = __dirname + __filename;
 console.log({path})
 hbs.registerPartials( path );
 app.use(express.static(__dirname+'public'));
