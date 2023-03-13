@@ -2,17 +2,17 @@ import express from "express";
 import * as url from "url";
 import hbs from 'hbs';
 import * as dotenv from 'dotenv';
+import path from "path";
 dotenv.config()
 
 const app = express();
 const PORT = process.env.PORT;
+const __filename = url.fileURLToPath(import.meta.url);
 const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
-const __filename = url.fileURLToPath('file://views/partials');
 
 app.set('view engine', 'hbs');
-const path = __dirname + __filename;
-console.log({path})
-hbs.registerPartials( path );
+const pathPartials = path.join(__dirname, "views/partials");
+hbs.registerPartials( pathPartials );
 app.use(express.static(__dirname+'public'));
 
 // Public static content
